@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import CardCarousel from "./CardCarousel";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -12,27 +13,14 @@ const fadeUp = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-dark">
-      {/* Background glow */}
-      <div className="absolute inset-0 bg-hero-gradient pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/10 blur-[120px] pointer-events-none" />
-      <div className="absolute top-2/3 right-20 w-[300px] h-[300px] rounded-full bg-accent/8 blur-[80px] pointer-events-none" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#000000]">
+      {/* 3D Card Carousel — full background */}
+      <CardCarousel />
 
-      {/* Floating dots */}
-      {[...Array(12)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 rounded-full bg-primary/40"
-          style={{
-            top: `${10 + Math.random() * 80}%`,
-            left: `${5 + Math.random() * 90}%`,
-          }}
-          animate={{ y: [0, -15, 0], opacity: [0.3, 0.8, 0.3] }}
-          transition={{ duration: 3 + Math.random() * 4, repeat: Infinity, delay: Math.random() * 3 }}
-        />
-      ))}
+      {/* Overlay gradient so text is readable */}
+      <div className="absolute inset-0 bg-gradient-to-l from-black/0 via-black/60 to-black/90 pointer-events-none z-10" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      <div className="relative z-20 max-w-5xl mx-auto px-6 text-center">
         {/* Badge */}
         <motion.div
           custom={0}
@@ -130,7 +118,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
